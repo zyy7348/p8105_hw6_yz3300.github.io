@@ -8,7 +8,7 @@ I worked with Huijuan Zhang (UNI: hz2510) for this homework.
 In this homework, we used __Instacart__ dataset. 
 
 
-Dashboard from Problem 1 is [here](problem1.html).
+Dashboard from Problem 1 is [here](problem1/problem1.html).
 
 
 Dashboard from Problem 2 is [here](https://huijuanzhang.shinyapps.io/p8105_hw6_problem2/).
