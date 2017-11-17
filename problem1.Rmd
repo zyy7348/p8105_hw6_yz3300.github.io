@@ -1,0 +1,66 @@
+---
+title: "Homework 6"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(janitor)
+library(plotly)
+library(stringr)
+library(ggridges)
+
+instacart = 
+  read_csv("./data/instacart_train_data.csv.zip") %>% 
+  clean_names()
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+violin_ggplot = 
+  instacart %>%
+  mutate(department = forcats::fct_reorder(department, order_hour_of_day, fun = IQR)) %>%
+  ggplot(aes(x = department, y = order_hour_of_day)) +
+  geom_violin(aes(fill = department), color = "blue", alpha = .5) +
+  stat_summary(fun.y = median, geom = "point", color = "blue", size = 2) +
+  guides(fill = "none") +
+  labs(
+    title = "Order Hour of Day Plot",
+    x = "Department",
+    y = "Order Hour of Day",
+    caption = "Data from Instacart"
+  ) +
+  theme_bw() +
+  coord_flip()
+
+ggplotly(violin_ggplot)
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+instacart %>%
+  mutate(department = forcats::fct_reorder(department, order_hour_of_day, fun = IQR)) %>% 
+  plot_ly(y = ~order_hour_of_day, color = ~department, type = "box",
+          colors = "Set2")
+```
+
+### Chart C
+
+```{r}
+instacart %>% 
+  filter(department == "produce") %>% 
+  plot_ly(x = ~order_hour_of_day, type = "histogram")
+```
+

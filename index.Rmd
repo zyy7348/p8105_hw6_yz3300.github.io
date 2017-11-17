@@ -1,0 +1,22 @@
+---
+title: "P8105 Homework 6"
+author: "Yeyi Zhang, yz3300"
+---
+Hello! This is a website for data science homework 6!  
+I worked with Huijuan Zhang (UNI: hz2510) for this homework.
+
+In this homework, I use __Instacart__ data.
+
+
+
+Dashboard from Problem 1 is [here](problem1.html).
+
+
+Dashboard from Problem 2 is [here](https://huijuanzhang.shinyapps.io/p8105_hw6_problem2/).
+
+
+The GitHub repos for this problem are [here](https://huijuanzhang.shinyapps.io/p8105_hw6_problem2/).
+
+
+
+
