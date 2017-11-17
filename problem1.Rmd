@@ -1,5 +1,5 @@
 ---
-title: "Homework 6"
+title: "Problem 1"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -19,10 +19,10 @@ instacart =
   clean_names()
 ```
 
-Column {data-width=650}
+Column {data-width=600}
 -----------------------------------------------------------------------
 
-### Chart A
+### Order Hour of Day of Departments
 
 ```{r}
 violin_ggplot = 
@@ -33,9 +33,8 @@ violin_ggplot =
   stat_summary(fun.y = median, geom = "point", color = "blue", size = 2) +
   guides(fill = "none") +
   labs(
-    title = "Order Hour of Day Plot",
-    x = "Department",
-    y = "Order Hour of Day",
+    x = "Order Hour of Day",
+    y = "Department",
     caption = "Data from Instacart"
   ) +
   theme_bw() +
@@ -44,23 +43,23 @@ violin_ggplot =
 ggplotly(violin_ggplot)
 ```
 
-Column {data-width=350}
+Column {data-width=400}
 -----------------------------------------------------------------------
 
-### Chart B
+### Days Since Prior Order of Departments
 
 ```{r}
+y = list(title = "Days Since Prior Order")
 instacart %>%
-  mutate(department = forcats::fct_reorder(department, order_hour_of_day, fun = IQR)) %>% 
-  plot_ly(y = ~order_hour_of_day, color = ~department, type = "box",
-          colors = "Set2")
+  plot_ly(y = ~days_since_prior_order, color = ~department, type = "box",
+          colors = "Set2") %>% 
+    layout(yaxis = y)
 ```
 
-### Chart C
+### Order Rush Hour
 
 ```{r}
 instacart %>% 
-  filter(department == "produce") %>% 
-  plot_ly(x = ~order_hour_of_day, type = "histogram")
+  plot_ly(x = ~order_hour_of_day, type = "histogram", alpha = .6)
 ```
 
